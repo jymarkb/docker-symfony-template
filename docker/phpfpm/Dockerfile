@@ -1,6 +1,22 @@
-ARG PHP_VERSION=8.2
+## JS Assets
+FROM node:20 as asset-build
+WORKDIR /app
 
-FROM php:${PHP_VERSION}-fpm-alpine AS app_php
+ARG PURGE_CSS=0
+
+COPY ./node_modules /
+
+# Copy node related configuration files
+COPY package.json /
+COPY webpack.config.js ./
+
+
+COPY package.json yarn.lock ./
+
+RUN yarn install
+RUN yarn run build
+
+FROM php:8.2-fpm-alpine AS app_php
 
 ARG WORKDIR=/app
 
@@ -11,6 +27,9 @@ COPY ./docker/phpfpm/xdebug.ini $PHP_INI_DIR/conf.d/xdebug.ini
 
 RUN mkdir -p ${WORKDIR}
 WORKDIR ${WORKDIR}
+
+ADD ./ /www
+COPY ./vendor /www/vendor
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
