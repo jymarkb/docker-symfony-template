@@ -2,11 +2,13 @@
     "devDependencies": {
         "@babel/core": "^7.17.0",
         "@babel/plugin-proposal-decorators": "^7.24.1",
+        "@babel/plugin-transform-react-jsx": "^7.23.4",
         "@babel/plugin-transform-runtime": "^7.24.3",
         "@babel/preset-env": "^7.16.0",
         "@symfony/webpack-encore": "^4.0.0",
         "core-js": "^3.23.0",
         "jquery": "^3.7.1",
+        "prettier": "^3.2.5",
         "regenerator-runtime": "^0.13.9",
         "webpack": "^5.74.0",
         "webpack-cli": "^4.10.0",
@@ -22,10 +24,19 @@
     },
     "dependencies": {
         "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
+        "@babel/plugin-syntax-jsx": "^7.24.1",
+        "@babel/preset-react": "^7.24.1",
+        "@babel/runtime": "^7.24.1",
+        "@prettier/plugin-php": "^0.22.2",
         "babel": "^6.23.0",
+        "preact": "^10.20.1",
+        "preact-jsx-runtime": "^1.2.0",
+        "prettier-plugin-twig-melody": "^0.4.6",
         "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "sass": "^1.72.0",
         "sass-loader": "^14.1.1",
+        "styled-jsx": "^5.1.2",
         "yarn": "^1.22.22"
     }
 }

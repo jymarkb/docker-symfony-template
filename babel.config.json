@@ -1,0 +1,28 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ],
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-transform-react-jsx",
+      {
+        "pragma": "React.createElement", // Use React.createElement for JSX transformation
+        "pragmaFrag": "React.Fragment"    // Use React.Fragment for JSX fragments
+      }
+    ],
+    [
+      "styled-jsx/babel",
+      {
+        "optimizeForSpeed": true
+      }
+    ]
+  ]
+}

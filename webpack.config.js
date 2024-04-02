@@ -9,11 +9,12 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 Encore
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
-    .configureBabel((babelConfig) => {
-        babelConfig.plugins.push(['@babel/plugin-proposal-decorators', { legacy: true }]);
-        babelConfig.plugins.push('@babel/plugin-proposal-object-rest-spread');
-        babelConfig.plugins.push('@babel/transform-runtime');
-    })
+    // .configureBabel((babelConfig) => {
+    //     babelConfig.plugins = babelConfig.plugins || [];
+    //     babelConfig.plugins.push(['@babel/plugin-proposal-decorators', { legacy: true }]);
+    //     babelConfig.plugins.push('@babel/plugin-proposal-object-rest-spread');
+    //     babelConfig.plugins.push('@babel/transform-runtime');
+    // })
     // public path used by the web server to access the output path
     .setPublicPath('/build')
     // only needed for CDN's or subdirectory deploy
@@ -26,7 +27,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
-
+    .addEntry('CardApp', './assets/CardApp.js')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
@@ -53,10 +54,10 @@ Encore
     // })
 
     // enables and configure @babel/preset-env polyfills
-    .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'usage';
-        config.corejs = '3.23';
-    })
+    // .configureBabelPresetEnv((config) => {
+    //     config.useBuiltIns = 'usage';
+    //     config.corejs = '3.23';
+    // })
 
     // enables Sass/SCSS support
     .enableSassLoader()
