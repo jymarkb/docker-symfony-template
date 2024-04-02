@@ -10,10 +10,10 @@
 *** Local Deployment ***
 
 ** install dependency **
-* composer install
-* yarn install
+* `composer install`
+* `yarn install`
 
 
-** docker build **
-* composer docker
-* yarn watch
+** build **
+* `composer docker`
+* `yarn watch`
