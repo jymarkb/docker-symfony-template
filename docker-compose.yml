@@ -30,6 +30,11 @@ services:
       - .env
     environment:
       - DATABASE_PASSWORD
+      - DATABASE_DRIVER
+      - DATABASE_HOST
+      - DATABASE_PORT
+      - DATABASE_USER
+      - DATABASE_PASSWORD
     volumes:
       - .:/app:rw,cached
       - ./var:/app/var
@@ -39,7 +44,6 @@ services:
     container_name: dev_memcached
     ports:
       - "11211:11211"
-
 
 volumes:
   dev_mysql_data:

@@ -1,5 +1,14 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+        {{ encore_entry_link_tags('CardApp') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('CardApp') }}
+        {% endblock %}
+
 {% block body %}
     <h1>Your lucky number is {{ number }}</h1>
+    <div id="container" class=" container"></div>
 {% endblock %}

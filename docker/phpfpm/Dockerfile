@@ -2,15 +2,12 @@
 FROM node:20 as asset-build
 WORKDIR /app
 
-ARG PURGE_CSS=0
+# ARG PURGE_CSS=0
 
 COPY ./node_modules /
-
 # Copy node related configuration files
 COPY package.json /
 COPY webpack.config.js ./
-
-
 COPY package.json yarn.lock ./
 
 RUN yarn install
