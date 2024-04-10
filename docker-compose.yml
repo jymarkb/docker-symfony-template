@@ -1,47 +1,51 @@
-version: '3.8'
+version: "3.8"
 
 services:
   database:
     image: mysql:8.2 # or mysql:8.2
-    container_name: dev_database
+    container_name: dev_database_template
     ports:
       - "3306:3306"
     volumes:
       - dev_mysql_data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=$DATABASE_PASSWORD
-  
-  nginx:
-    build:
-      context: ./
-      dockerfile: ./docker/nginx/Dockerfile
-    container_name: dev_nginx
-    volumes:
-      - ./public:/app/public:ro
-    ports:
-      - "80:80"
 
-  phpfpm:
+  php:
     build:
       context: ./
       dockerfile: ./docker/phpfpm/Dockerfile
-    container_name: dev_phpfm
+    container_name: dev_phpfpm_template
+    depends_on:
+      - database
     env_file:
       - .env
     environment:
-      - DATABASE_PASSWORD
       - DATABASE_DRIVER
       - DATABASE_HOST
       - DATABASE_PORT
+      - DATABASE_NAME
       - DATABASE_USER
       - DATABASE_PASSWORD
     volumes:
       - .:/app:rw,cached
       - ./var:/app/var
 
+  nginx:
+    build:
+      context: ./
+      dockerfile: ./docker/nginx/Dockerfile
+    container_name: dev_nginx_template
+    depends_on:
+      - php
+    volumes:
+      - ./public:/app/public:ro
+    ports:
+      - "80:80"
+
   memcached:
     image: memcached
-    container_name: dev_memcached
+    container_name: dev_memcached_template
     ports:
       - "11211:11211"
 
